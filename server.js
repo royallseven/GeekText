@@ -1,8 +1,27 @@
 const express = require('express')
-const app = express()
+const mongoose = require('mongoose')
+require('dotenv').config()
+const routes = require('./sort.js');
+const connection_string = process.env.MONGODB_CONNECTION_STRING
 
-app.get('/', (req, res) => {
-    res.status(200).send('Hello World!');
+mongoose.connect(connection_string)
+.then(() => console.log('MongoDB connected...'))
+.catch(err => console.log(err))
+
+const db = mongoose.connection
+
+db.on('error', console.error.bind(console, 'connection error:'))
+
+db.once('open', () => {
+    console.log('Connected to MongoDB')
 })
 
-app.listen(3000, () => console.log('Server running on port 3000'))
+
+const app = express()
+
+app.use(express.json());
+app.use('/sort', routes)
+
+app.listen(3000, () => {
+    console.log(`Server Started at ${3000}`)
+})
