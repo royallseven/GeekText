@@ -1,3 +1,4 @@
+const { Decimal128 } = require('mongodb')
 const mongoose = require('mongoose')
 
 const bookSchema = new mongoose.Schema({
@@ -21,6 +22,10 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    price: {
+        type: Decimal128,
+        required: true
+    }
 })
 
 module.exports = mongoose.model('Book', bookSchema)

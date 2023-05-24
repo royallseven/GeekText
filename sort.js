@@ -9,7 +9,8 @@ router.post('/', async (req, res) => {
         publisher: req.body.publisher,
         genre: req.body.genre,
         rating: req.body.rating,
-        copiesSold: req.body.copiesSold
+        copiesSold: req.body.copiesSold,
+        price: req.body.price
     })
     try {
         const newBook = await book.save()
