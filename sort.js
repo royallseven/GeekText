@@ -6,7 +6,10 @@ const router = express.Router()
 router.post('/', async (req, res) => {
     const book = new Book({
         title: req.body.title,
-        publisher: req.body.publisher
+        publisher: req.body.publisher,
+        genre: req.body.genre,
+        rating: req.body.rating,
+        copiesSold: req.body.copiesSold
     })
     try {
         const newBook = await book.save()

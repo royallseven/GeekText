@@ -17,6 +17,10 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    copiesSold: {
+        type: Number,
+        required: true
+    },
 })
 
 module.exports = mongoose.model('Book', bookSchema)
